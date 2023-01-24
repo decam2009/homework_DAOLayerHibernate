@@ -16,8 +16,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public List<Person> getPersonsByCity(String city) {
-        TypedQuery<Person> personTypedQuery =  entityManager.createQuery("select new list (p.name, p.surname) " +
-                "from Person p where p.cityOfLiving = :cityName", Person.class);
+        TypedQuery<Person> personTypedQuery =  entityManager.createQuery("select p from Person p where p.cityOfLiving = :cityName", Person.class);
         personTypedQuery.setParameter("cityName", city);
         return personTypedQuery.getResultList();
     }
